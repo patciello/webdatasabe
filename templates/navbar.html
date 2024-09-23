@@ -1,0 +1,13 @@
+<!-- navbar.html -->
+<nav>
+    <ul>
+        <li><a href="{{ url_for('dashboard') }}">Home</a></li>
+        <li><a href="{{ url_for('history') }}">Histórico</a></li>
+        <li><a href="{{ url_for('shared_collections') }}">Coleções Compartilhadas</a></li>
+        <li>
+            <img src="{{ session['user_info']['picture'] }}" alt="Avatar" width="30" height="30">
+            {{ session['user_info']['name'] }}
+        </li>
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+    </ul>
+</nav>

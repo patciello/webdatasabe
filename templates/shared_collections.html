@@ -1,0 +1,28 @@
+<!-- shared_collections.html -->
+{% extends 'base.html' %}
+{% block title %}Coleções Compartilhadas{% endblock %}
+{% block content %}
+{% include 'navbar.html' %}
+<h1>Coleções Compartilhadas</h1>
+{% for owner_email, content in shared_data.items() %}
+    <h2>Dados de {{ owner_email }}</h2>
+    <table>
+        <thead>
+            <tr>
+                {% for col in content.columns %}
+                    <th>{{ col }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in content.data %}
+                <tr>
+                    {% for col in content.columns %}
+                        <td>{{ item[col] }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,42 @@
+<!-- dashboard.html -->
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+{% include 'navbar.html' %}
+<h1>Dashboard</h1>
+
+<p>Preencha todos os campos para cadastrar um novo registro. Preencha um ou mais campos para pesquisar.</p>
+
+<form method="POST">
+    {% for col in columns %}
+        <input type="text" name="{{ col }}" placeholder="{{ col }}">
+    {% endfor %}
+    <button type="submit">Enviar</button>
+</form>
+
+<!-- Formulário de Compartilhamento -->
+<form method="POST" action="{{ url_for('share') }}">
+    <input type="email" name="share_email" placeholder="E-mail para compartilhar" required>
+    <button type="submit">Compartilhar</button>
+</form>
+
+<!-- Tabela de Dados -->
+<table>
+    <thead>
+        <tr>
+            {% for col in columns %}
+                <th>{{ col }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in data %}
+            <tr>
+                {% for col in columns %}
+                    <td>{{ item[col] }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

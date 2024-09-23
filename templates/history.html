@@ -1,0 +1,25 @@
+<!-- history.html -->
+{% extends 'base.html' %}
+{% block title %}Histórico{% endblock %}
+{% block content %}
+{% include 'navbar.html' %}
+<h1>Histórico de Cadastros</h1>
+<table>
+    <thead>
+        <tr>
+            {% for col in columns %}
+                <th>{{ col }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in data %}
+            <tr>
+                {% for col in columns %}
+                    <td>{{ item[col] }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
