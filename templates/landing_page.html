@@ -1,8 +1,17 @@
-<!-- landing_page.html -->
-{% extends 'base.html' %}
-{% block title %}Bem-vindo ao Web App{% endblock %}
-{% block content %}
-<h1>Bem-vindo ao Web App</h1>
-<p>Descrição das funcionalidades...</p>
-<a href="{{ url_for('login') }}">Login com Google</a>
+{% extends 'base.html' %} {% block title %}Bem-vindo ao Web App{% endblock %} {%
+block content %}
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="text-center">
+    <h1 class="text-4xl font-bold mb-6">Bem-vindo ao Web App</h1>
+    <p class="text-lg mb-8">
+      Faça login para acessar suas coleções personalizadas e colaborar com
+      outros usuários.
+    </p>
+    <a
+      href="{{ url_for('login') }}"
+      class="bg-blue-500 text-white py-3 px-6 rounded hover:bg-blue-600"
+      >Login com Google</a
+    >
+  </div>
+</div>
 {% endblock %}
