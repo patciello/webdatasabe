@@ -1,33 +1,30 @@
 {% extends 'base.html' %} {% block title %}Coleções Compartilhadas{% endblock %}
 {% block content %} {% include 'navbar.html' %}
-<div class="container mx-auto px-4 py-6">
-  <h1 class="text-2xl font-bold mb-6">Coleções Compartilhadas</h1>
+<div class="container">
+  <h1>Coleções Compartilhadas</h1>
   {% if shared_data %} {% for owner_email, content in shared_data.items() %}
-  <div class="mb-8">
-    <h2 class="text-xl font-semibold mb-4">Dados de {{ owner_email }}</h2>
-    <div class="overflow-x-auto">
-      <table class="min-w-full bg-white border mb-6">
-        <thead>
-          <tr>
-            {% for col in content.columns %}
-            <th class="py-2 px-4 border-b text-left">{{ col }}</th>
-            {% endfor %}
-          </tr>
-        </thead>
-        <tbody>
-          {% for item in content.data %}
-          <tr class="hover:bg-gray-100">
-            {% for col in content.columns %}
-            <td class="py-2 px-4 border-b">{{ item[col] }}</td>
-            {% endfor %}
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </div>
+  <h2>Dados de {{ owner_email }}</h2>
+  <table>
+    <thead>
+      <tr>
+        {% for col in content.columns %}
+        <th>{{ col }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in content.data %}
+      <tr>
+        {% for col in content.columns %}
+        <td>{{ item[col] }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <br />
   {% endfor %} {% else %}
-  <p class="text-gray-600">Nenhuma coleção compartilhada disponível.</p>
+  <p>Nenhuma coleção compartilhada disponível.</p>
   {% endif %}
 </div>
 {% endblock %}

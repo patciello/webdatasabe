@@ -1,47 +1,49 @@
-<!-- dashboard.html -->
 {% extends 'base.html' %} {% block title %}Dashboard{% endblock %} {% block
 content %} {% include 'navbar.html' %}
-<div class="container mx-auto px-4">
-  <h1 class="text-2xl font-bold my-4">Dashboard</h1>
+<div class="container">
+  <h1>Dashboard</h1>
+  {% with messages = get_flashed_messages(with_categories=true) %} {% if
+  messages %} {% for category, message in messages %}
+  <p class="flash-{{ category }}">{{ message }}</p>
+  {% endfor %} {% endif %} {% endwith %}
 
-  <p class="mb-4">
+  <p>
     Preencha todos os campos para cadastrar um novo registro. Preencha um ou
     mais campos para pesquisar.
   </p>
 
-  <form method="POST" class="mb-6">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {% for col in columns %}
-      <input
-        type="text"
-        name="{{ col }}"
-        placeholder="{{ col }}"
-        class="border border-gray-300 p-2 rounded w-full"
-      />
-      {% endfor %}
-    </div>
-    <button
-      type="submit"
-      class="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-    >
-      Enviar
-    </button>
+  <form method="POST">
+    {% for col in columns %}
+    <input type="text" name="{{ col }}" placeholder="{{ col }}" />
+    {% endfor %}
+    <button type="submit">Enviar</button>
+  </form>
+
+  <!-- Formulário de Compartilhamento -->
+  <form method="POST" action="{{ url_for('share') }}">
+    <input
+      type="email"
+      name="share_email"
+      placeholder="E-mail para compartilhar"
+      required
+    />
+    <button type="submit">Compartilhar</button>
   </form>
 
   <!-- Tabela de Dados -->
-  <table class="min-w-full bg-white border">
+  <table>
     <thead>
       <tr>
         {% for col in columns %}
-        <th class="py-2 px-4 border-b text-left">{{ col }}</th>
+        <th>{{ col }}</th>
         {% endfor %}
       </tr>
     </thead>
     <tbody>
       {% for item in data %}
-      <tr class="hover:bg-gray-100">
+      <tr>
         {% for col in columns %}
-        <td class="py-2 px-4 border-b">{{ item[col] }}</td>
+        <td>{{ item[col] }}</td>
         {% endfor %}
       </tr>
       {% endfor %}

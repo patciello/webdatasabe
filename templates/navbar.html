@@ -1,38 +1,19 @@
-<nav class="bg-gray-800 p-4">
-  <div class="container mx-auto flex items-center justify-between">
-    <ul class="flex items-center space-x-4">
-      <li>
-        <a
-          href="{{ url_for('dashboard') }}"
-          class="text-white hover:text-gray-300"
-          >Home</a
-        >
-      </li>
-      <li>
-        <a
-          href="{{ url_for('history') }}"
-          class="text-white hover:text-gray-300"
-          >Histórico</a
-        >
-      </li>
-      <li>
-        <a
-          href="{{ url_for('shared_collections') }}"
-          class="text-white hover:text-gray-300"
-          >Coleções Compartilhadas</a
-        >
-      </li>
-    </ul>
-    <div class="flex items-center space-x-4">
+<nav>
+  <ul>
+    <li><a href="{{ url_for('dashboard') }}">Home</a></li>
+    <li><a href="{{ url_for('history') }}">Histórico</a></li>
+    <li>
+      <a href="{{ url_for('shared_collections') }}">Coleções Compartilhadas</a>
+    </li>
+    <li style="float: right">
+      <span>{{ session['user_info']['name'] }}</span>
       <img
         src="{{ session['user_info']['picture'] }}"
         alt="Avatar"
-        class="w-8 h-8 rounded-full"
+        width="30"
+        height="30"
       />
-      <span class="text-white">{{ session['user_info']['name'] }}</span>
-      <a href="{{ url_for('logout') }}" class="text-white hover:text-gray-300"
-        >Logout</a
-      >
-    </div>
-  </div>
+    </li>
+    <li style="float: right"><a href="{{ url_for('logout') }}">Logout</a></li>
+  </ul>
 </nav>
