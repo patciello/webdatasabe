@@ -13,7 +13,8 @@ app.secret_key = os.environ.get('SECRET_KEY')
 
 # Configuração do MongoDB
 client = MongoClient(os.environ.get('MONGO_URI'))
-db = client['my_webapp_db']
+db = client['webdatabase']
+collection = db['webdata']
 
 # Configuração do OAuth para Google Login
 oauth = OAuth(app)
